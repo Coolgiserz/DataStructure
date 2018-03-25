@@ -50,7 +50,10 @@ void Stack::showStack(link *top) {
 }
 
 int  Stack::getTop(link *top) {
-    return top->data;
+    if(top->next!=NULL){
+        return top->next->data;
+    }
+    return 0;
 
 }
 

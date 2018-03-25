@@ -12,11 +12,29 @@ void test(int &sum){
     }
     cout<<sum<<endl;
 }
+//将test函数的递归实现以非递归的方式实现
+void test_plus(){
+    int x;
+    Stack *s = new Stack;
+    while(cin>>x && x!=0){
+        s->push(s->top,x);
+    }
+    int sum=0;
+    while(s->empty(s->top)!=true){
+        int now = s->getTop(s->top);
+        cout<<sum+now;
+    }
+    
+}
 
-int main(){
-//    int sum=1;
-//    test(sum);
+void test_link_stack(){
     Stack *s = new Stack;
     s->initStack(s->top);
     s->MainApi(s->top);
+}
+int main(){
+
+   test_link_stack();
+    // int sum=2;
+    // test(sum);
 }
