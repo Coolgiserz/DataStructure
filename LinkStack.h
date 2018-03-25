@@ -15,50 +15,53 @@ public:
 class Stack{
 public:
     link *top;
-    void initStack(Stack &s);
-    void push(Stack &s,int x);
-    void pop(Stack &s);
-    int  getTop(Stack &s);
-    void showStack(Stack &s);
-    bool empty(Stack &s);
-    void MainApi(Stack &s);
+    Stack(){
+        top = new link;
+    }
+    void initStack(link *top);
+    void push(link *top,int x);
+    void pop(link *top);
+    int  getTop(link *top);
+    void showStack(link *top);
+    bool empty(link *top);
+    void MainApi(link *top);
 };
 
-void Stack::initStack(Stack &s) {
+void Stack::initStack(link *top) {
     // link *p=new link;
     // p->data=0;
-    // s.top=p;
-    // // s.top->next=NULL;
-    s.top=new link;
-     s.top->next=NULL;
+    // top=p;
+    // // top->next=NULL;
+    top->next=NULL;
 }
 
-void Stack::showStack(Stack &s) {
-    if(s.top->next==NULL){
+void Stack::showStack(link *top) {
+    if(top->next==NULL){
         cout<<"栈如我心，空无一物";
-        MainApi(s);
+        MainApi(top);
     }
     
-    while(s.top->next!=NULL){
+    while(top->next!=NULL){
         
-        cout<<s.top->data<<endl;
-        s.top=s.top->next;
+        cout<<top->data<<endl;
+        top=top->next;
     }
+     cout<<top->data<<endl;
 }
 
-int  Stack::getTop(Stack &s) {
-    return s.top->data;
+int  Stack::getTop(link *top) {
+    return top->data;
 
 }
 
-void Stack::pop(Stack &s) {
-    if(s.top->next==s.top){
+void Stack::pop(link *top) {
+    if(top->next==top){
         cout<<"栈已经空了，不能这样操作了"<<endl;
         return;
     }
-    // link *p=s.top;
-    link *p=s.top->next;
-    s.top->next=p->next;
+    // link *p=top;
+    link *p=top->next;
+    top->next=p->next;
     delete p;
 }
 
@@ -66,15 +69,15 @@ void Stack::pop(Stack &s) {
 进栈运算，先开辟一个新的结点，他将要作为栈顶元素，于是top所指的地址要给它
 保管。之后top再指向它
 */
-void Stack::push(Stack &s, int x) {
+void Stack::push(link *top, int x) {
     link *p=new link;
     p->data=x;
-    p->next=s.top->next;
-    s.top->next=p;
+    p->next=top->next;
+    top->next=p;
 }
 
-bool Stack::empty(Stack &s) {
-    if(s.top->next==NULL){
+bool Stack::empty(link *top) {
+    if(top->next==NULL){
         cout<<"栈空";
         return true;
     }else{
@@ -84,7 +87,7 @@ bool Stack::empty(Stack &s) {
 
 }
 
-void Stack::MainApi(Stack &s){
+void Stack::MainApi(link *top){
     cout<<"你接下来要进行什么操作？？？键入[1-5]"<<endl;
     cout<<"1. 进栈"<<endl;
     cout<<"2. 出栈"<<endl;
@@ -100,29 +103,29 @@ void Stack::MainApi(Stack &s){
         case(1):{
             int x;
             cout<<"Enter 0 to exit"<<endl;
-            cin>>x;
-            while (x!=0){
-                     push(s,x);
-                     cin>>x;
+            while (cin>>x && x!=0){
+                     push(top,x);
+                    //  cout<<top->next->data;
+                     
             }
            cout<<"OK!";
 
             break;
         }
         case(2):{
-            pop(s);
+            pop(top);
             break;
         }
         case(3):{
-            int res = getTop(s);
+            int res = getTop(top);
             break;
         }
         case(4):{
-            bool res = empty(s);
+            bool res = empty(top);
             break;
         }
         case(5):{
-            showStack(s);
+            showStack(top);
             break;
         }
         case(6):{
@@ -133,6 +136,6 @@ void Stack::MainApi(Stack &s){
        
     }
      cout<<"操作完成！";
-     MainApi(s);
+     MainApi(top);
 
 }

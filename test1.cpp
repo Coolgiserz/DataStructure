@@ -17,6 +17,6 @@ int main(){
 //    int sum=1;
 //    test(sum);
     Stack *s = new Stack;
-    s->initStack(*s);
-    s->MainApi(*s);
+    s->initStack(s->top);
+    s->MainApi(s->top);
 }
