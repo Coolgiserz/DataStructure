@@ -16,8 +16,8 @@ public:
     }k;
     linknode *rpoint,*cpoint;
     linknode *createlindmat();
-    linknode *display_(linknode *hm);
-    linknode *display(linknode *hm);
+    void display_(linknode *hm);
+    void display(linknode *hm);
 };
 
 linknode *linknode::createlindmat(){
@@ -81,11 +81,29 @@ linknode *linknode::createlindmat(){
 
 }
 //按照三元组表的形式输出
-linknode* linknode::display(linknode *hm) {
+void linknode::display(linknode *hm) {
+    linknode *p,*q;
+    p = hm->k.next;
+    while(p->k.next!=hm){
 
+        q = p->rpoint;
+//        cout<<q->i<<" "<<q->j<<" "<<q->k.value<<" "<<endl;
+        while(q->rpoint!=p){
+
+            cout<<q->i<<" "<<q->j<<" "<<q->k.value<<" "<<endl;
+            q = q->rpoint;
+        }
+
+        if(p!=q){
+ 
+            cout<<q->i<<" "<<q->j<<" "<<q->k.value<<" ";
+        }
+        cout<<endl;
+        p=p->k.next;
+    }
 }
 //按照正常矩阵的形式输出
-linknode* linknode::display_(linknode *hm) {
+void linknode::display_(linknode *hm) {
 
 }
 
