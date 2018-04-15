@@ -18,6 +18,7 @@ public:
     linknode *createlindmat();
     void display_(linknode *hm);
     void display(linknode *hm);
+    linknode *addlindmat(linknode *ha, linknode *hb);
 };
 
 linknode *linknode::createlindmat(){
@@ -95,7 +96,7 @@ void linknode::display(linknode *hm) {
         }
 
         if(p!=q){
- 
+
             cout<<q->i<<" "<<q->j<<" "<<q->k.value<<" ";
         }
         cout<<endl;
@@ -107,5 +108,72 @@ void linknode::display_(linknode *hm) {
 
 }
 
+linknode* linknode::addlindmat(linknode *ha, linknode *hb) {
+    linknode *pa,*pb,*qa,*ca,*cb,*p,*q;
+    linknode *hl[100];
+    int i,j,n;
+    if((ha->i!=hb->i)||(ha->j!=ha->j)){
+        cout<<"矩阵不匹配，不能相加！"<<endl;
+    }else{
+        p = ha->k.next;
+        n = ha->j;
+        for(i=1;i<=n;i++){
+            hl[i] = p;
+            p = p->k.next;
+        }
+        ca = ha->k.next;
+        cb = hb->k.next;
+        while(ca->i==0){
+            pa = ca->rpoint;pb = cb->rpoint;
+            qa = ca;
+            while(pb->j!=0){
+                if((pa->j<pb->j)&&(pa->j!=0)){
+
+                }else if((pa->j<pb->j)||pa->j==0){
+                    p = new linknode;
+                    p->i = pb->i;
+                    p->j = pb->j;
+                    p->k.value = pb->k.value;
+                    qa->rpoint = p;
+                    p->rpoint = pa;
+                    qa = p;
+                    pb = pb->rpoint;
+                    j = p->j;
+                    q = hl[j]->cpoint;
+                    while((q->i<p->i)&&(q->i!=0)){
+                        hl[j] = q;
+                        q = hl[j]->cpoint;
+                    }
+                    hl[j]->cpoint = p;
+                    p->cpoint = q;
+                    hl[j] = p;
+                }else{
+                    pa->k.value = pa->k.value + pb->k.value;
+                    if(pa->k.value == 0){
+                        qa->rpoint = pa->rpoint;
+                        j = pa->j;
+                        q = hl[j]->cpoint;
+                        while(q->i<pa->i){
+                            hl[j] = q;
+                            q = hl[j]->cpoint;
+                        }
+                        hl[j]->cpoint = q->cpoint;
+                        pa = pa->rpoint;
+                        pb = pb->rpoint;
+                        delete q;
+                    }else{
+                        qa = pa;
+                        pa = pa->rpoint;
+                        pb = pb->rpoint;
+                    }
+                }
+            }
+            ca = ca->k.next;
+            cb = cb->k.next;
+        }
+    }
+
+    return ha;
+}
 
 #endif //DATASTRUCT_ORTHOGONALLIST_H

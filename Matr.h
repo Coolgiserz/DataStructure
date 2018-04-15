@@ -1,6 +1,4 @@
-//
-// Created by 朱国伟 on 2018/4/6.
-//
+
 
 #ifndef DATASTRUCT_MATR_H
 #define DATASTRUCT_MATR_H
@@ -85,4 +83,67 @@ void Matr::fasttrans(Matr a, Matr b) {
 
 }
 
+//稀疏矩阵数据结构
+class linknode{
+public:
+    int i,j;
+    union vnext{
+        int v;
+        linknode *next;
+    }k;
+    linknode *cpoint,*rpoint;
+    linknode *createlindmat();
+};
+//稀疏矩阵的建立
+linknode* linknode::createlindmat() {
+    int m,n,terms,s,i,j,v;
+    linknode *p,*q,*cp[100],*hm;
+    cout<<"请输入稀疏矩阵的行、列数以及非零元的个数"<<endl;
+    cin>>m>>n>>terms;
+    if(m>n){
+        s=m;
+    }else{
+        s=n;
+    }
+    hm = new linknode;
+    hm->i=m;
+    hm->j=n;
+    cp[0] = hm;
+    for(i=1;i<=s;i++){
+        p = new linknode;
+        p->i=0;
+        p->j=0;
+        p->rpoint = p;
+        p->cpoint = p;
+        cp[i] = p;
+        cp[i-1]->k.next = p;
+    }
+    cp[s]->k.next = hm;
+    for(int x=1;x<terms;x++){
+        cout<<"请输入一个三元组(i,j,v)"<<endl;
+        cin>>i>>j>>v;                       //输入一个非零元的三元组
+        p = new linknode;
+        p->i = i;
+        p->j = j;
+        p->k.v = v;                         //生成一个三元组的结点
+        //以下是将p插入到第i行链表中
+        q = cp[i];
+        while ((q->rpoint!=cp[i])&&(q->rpoint->j<j)){
+            q = q->rpoint;
+            p->rpoint=q->rpoint;
+            q->rpoint=p;//?
+
+        }
+
+        //以下是将p插入到第j列链表中
+        q = cp[j];
+        while((q->cpoint!=cp[j])&&q->cpoint->i<i){
+            q = q->cpoint;
+            p->cpoint = q->cpoint;
+            q->cpoint = p;
+        }
+
+    }
+    return hm;
+}
 #endif //DATASTRUCT_MATR_H

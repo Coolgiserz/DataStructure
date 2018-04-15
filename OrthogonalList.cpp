@@ -8,10 +8,15 @@ using namespace std;
 
 int main(){
     linknode T;
-    linknode *hm = NULL;
+    linknode *ha = NULL,*hb = NULL,*hc = NULL;
 
-    hm = T.createlindmat();
-    T.display(hm);
+    ha = T.createlindmat();
+    T.display(ha);
+    hb = T.createlindmat();
+    T.display(hb);
+    hc = T.addlindmat(ha,hb);
+    cout<<"结果"<<endl;
+    T.display(hc);
 
 
 }
