@@ -12,11 +12,13 @@ int main(){
 
     ha = T.createlindmat();
     T.display(ha);
+    T.display_(ha);
     hb = T.createlindmat();
     T.display(hb);
+    T.display_(hb);
     hc = T.addlindmat(ha,hb);
     cout<<"结果"<<endl;
     T.display(hc);
-
+    T.display_(hc);
 
 }
