@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "hftree.h"
+#include <iomanip>
 using namespace std;
 
 int main(){
@@ -19,6 +20,7 @@ void tree::creathftree() {
 
     float w1,w2;
     for(int i=1;i<=m;i++){
+        hf[i].value = '#';
         hf[i].weight = 0;
         hf[i].parent = 0;
         hf[i].lchild = 0;
@@ -28,6 +30,14 @@ void tree::creathftree() {
 //        cin>>hf[i].weight;
 //    }
 hf[1].weight=5,hf[2].weight=29,hf[3].weight=7,hf[4].weight=8,hf[5].weight=14,hf[6].weight=23;hf[7].weight=3;hf[8].weight=11;
+    hf[1].value='a';
+    hf[2].value='b';
+    hf[3].value='c';
+    hf[4].value='d';
+    hf[5].value='e';
+    hf[6].value='f';
+    hf[7].value='g';
+    hf[8].value='h';
     //建立哈夫曼树
     for( i = n+1;i<=m;i++){
         l1 = l2 = 0;
@@ -71,7 +81,7 @@ hf[1].weight=5,hf[2].weight=29,hf[3].weight=7,hf[4].weight=8,hf[5].weight=14,hf[
     //输出哈夫曼树
 
     for(i=1;i<=m;i++){
-        cout<<" "<<i<<" "<<hf[i].weight<<" "<<hf[i].parent<<" "<<hf[i].lchild<<" "<<hf[i].rchild<<endl;
+        cout<<i<<setw(4)<<setw(4)<<hf[i].value<<setw(4)<<hf[i].weight<<setw(4)<<hf[i].parent<<setw(4)<<hf[i].lchild<<setw(4)<<hf[i].rchild<<endl;
     }
 
 }

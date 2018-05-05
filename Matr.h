@@ -18,6 +18,7 @@ public:
     node data[maxsize];
     void transpose(Matr a,Matr b);
     void fasttrans(Matr a,Matr b);
+
 };
 
 //按照列序进行转置
@@ -93,6 +94,7 @@ public:
     }k;
     linknode *cpoint,*rpoint;
     linknode *createlindmat();
+
 };
 //稀疏矩阵的建立
 linknode* linknode::createlindmat() {

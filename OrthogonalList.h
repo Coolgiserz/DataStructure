@@ -105,7 +105,24 @@ void linknode::display(linknode *hm) {
 }
 //按照正常矩阵的形式输出
 void linknode::display_(linknode *hm) {
-
+    linknode *p = hm->k.next;
+    int m=1;int n=1;
+    while(m<=hm->i){
+        p = p->rpoint;
+        while(n<=hm->j){
+            if(m ==p->i&&n==p->j&&p->k.next!=NULL){
+                cout<<p->k.value<<" ";
+                p=p->rpoint;
+            }else{
+                cout<<"0 ";
+            }
+            n++;
+        }
+        n=1;
+        m++;
+        p=p->k.next;
+        cout<<endl;
+    }
 }
 
 linknode* linknode::addlindmat(linknode *ha, linknode *hb) {

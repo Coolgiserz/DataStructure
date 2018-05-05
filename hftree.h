@@ -12,7 +12,7 @@
  * 需要给定叶子结点个数，即权值个数n
  * 从而得到，合并以后共有2n-1个结点
  *
- *
+ *https://github.com/Csuerzhuge/DataStructure.git
  *
  * **/
 
@@ -24,6 +24,7 @@ const int m = 2*n - 1;          //哈夫曼树结点个数
 class tree{
 public:
     float weight;
+    char value;
     int parent;
     int lchild;
     int rchild;
