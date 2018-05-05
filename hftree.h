@@ -19,7 +19,11 @@
 const int n = 8;                //权值个数
 const int m = 2*n - 1;          //哈夫曼树结点个数
 
-
+class code{
+public:
+    char value;
+    float weight;
+};
 
 class tree{
 public:
@@ -29,7 +33,11 @@ public:
     int lchild;
     int rchild;
     void creathftree();
+    void encodehf();
+    void decodestr();
+
 };
 tree hf[m+1];
+code hfcode[n+1];   //用来存放哈夫曼树编码
 
 

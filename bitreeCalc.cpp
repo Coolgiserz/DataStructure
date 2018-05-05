@@ -33,4 +33,6 @@ int main(){
     cout<<tree->treenode(tree);
     tree->displaychild(tree,'A');
     tree->displaychild(tree,'E');
+    tree->exchange(tree);
+    tree->preorder(tree);
 }

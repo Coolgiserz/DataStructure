@@ -85,3 +85,9 @@ hf[1].weight=5,hf[2].weight=29,hf[3].weight=7,hf[4].weight=8,hf[5].weight=14,hf[
     }
 
 }
+//用栈，遍历哈夫曼树，算出每一个结点的路径
+void tree::encodehf() {
+
+
+
+}

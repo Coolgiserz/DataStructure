@@ -51,6 +51,7 @@ public:
     void inorder1(Bitree *root);
     void postorder1(Bitree *root);
     void lorder(Bitree *root);
+    void exchange(Bitree *root);
 };
 
 //build a bitree according to the preorder and inorder result最后返回一棵二叉树
@@ -285,3 +286,19 @@ void Bitree::lorder(Bitree *root) {
     }
 }
 /*****************************遍历算法结束************************************************/
+/*****************************互换左右子树************************************************/
+
+void Bitree::exchange(Bitree *root) {
+    Bitree *p = root;
+    Bitree *t = new Bitree;
+    if(p!=NULL){
+        exchange(p->lchild);
+        t = p->rchild;
+        p->rchild = p->lchild;
+        p->lchild = t;
+        exchange(p->rchild);
+    }
+
+
+
+}
