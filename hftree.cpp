@@ -5,11 +5,64 @@
 #include <iostream>
 #include "hftree.h"
 #include <iomanip>
+#include <sstream>
 using namespace std;
 
 int main(){
     tree t;
     t.creathftree();
+    //初始化hfcode数组
+//    for(int i=1;i<=n;i++){
+//        hfcode[i] = 0;
+//    }
+//    t.encodehf(n,hfcode[n+1]);
+    for(int w=1;w<=n;w++){
+        hf[w].local=0;
+    }
+    for(int i=1;i<=n;i++){
+        t.encodehf(i);
+
+    }
+
+    /*
+     * 测试代码
+     *
+     * */
+    int g=1;
+   for(g=1;g<=n;g++){
+       cout<<hf[g].value<<" "<<hf[g].weight<<" ";
+        for (int h = hf[g].local-1; h >= 0; h--){
+
+            cout<< hf[g].hfcode[h];
+        }
+       cout<<endl;
+//        cout<<"hh";
+    }
+
+
+    /**
+     * 输入要查的编码，我给你还原
+     *
+     *
+     * */
+    cout<<"输入二进制编码，#则退出";
+    int code;
+    cin>>code;
+    while(code!=2){
+        for(g=1;g<=n;g++){
+            stringstream ss;
+            for (int h = hf[g].local-1; h >= 0; h--){
+                ss<<hf[g].hfcode[h];
+//                cout<< hf[g].hfcode[h];
+            }
+            string str = ss.str();
+            int tmp = atof(str.c_str());
+            cout<<tmp;
+            cout<<endl;
+//        cout<<"hh";
+        }
+        cin>>code;
+    }
 }
 
 
@@ -85,9 +138,46 @@ hf[1].weight=5,hf[2].weight=29,hf[3].weight=7,hf[4].weight=8,hf[5].weight=14,hf[
     }
 
 }
-//用栈，遍历哈夫曼树，算出每一个结点的路径
-void tree::encodehf() {
+/*
+ * 用栈，遍历哈夫曼树，算出每一个结点的路径
+ * n表示叶子结点个数
+ *
+ */
+
+void tree::encodehf(int _n) {
+//    cout<<"Hello";
+    int q=0;    //用座hfcode数组的指示器
+    int i=1,j=1;    //循环变量
+    int parent = hf[_n].parent;
+    int save = _n;
+    while(parent<=m&parent>0){    //要遍历整个双亲孩子表示法表示的哈夫曼树数组
+//        parent = hf[i].parent;
 
 
+        if(hf[parent].lchild == _n){
+//                cout<<"Hello"; for(int w=1;w<=n;w++){
+//            cout<<hf[j].local;
+
+            hf[save].hfcode[hf[save].local++] = 0;
+//            cout<<hf[j].local;
+
+        }
+        if(hf[parent].rchild == _n){
+            hf[save].hfcode[hf[save].local++] = 1;
+        }
+       _n = parent;
+        parent = hf[_n].parent;
+
+
+    }
+
+//    for (parent = hf[3].local-1; parent >= 0; parent--){
+//        cout<<"2";
+////        cout << hfcode[parent];
+//    cout<< hf[3].hfcode[hf[3].local];
+//
+//    }
+
+//    cout << endl;
 
 }

@@ -18,26 +18,34 @@
 
 const int n = 8;                //权值个数
 const int m = 2*n - 1;          //哈夫曼树结点个数
+const int maxsize = 20;
 
-class code{
-public:
-    char value;
-    float weight;
-};
+//class code{
+//public:
+//    char value;
+//    float weight;
+//    int hfcode[maxsize];
+//};
 
 class tree{
 public:
     float weight;
     char value;
     int parent;
+    int local;      //用来存储工作指示器
+    int code;
     int lchild;
     int rchild;
+    int hfcode[n+1];   //用来存放哈夫曼树编码
+
     void creathftree();
-    void encodehf();
+//    void encodehf(int n,int hfcode[n+1]);
+    void encodehf(int _n);
+
     void decodestr();
 
 };
-tree hf[m+1];
-code hfcode[n+1];   //用来存放哈夫曼树编码
 
 
+tree hf[m+1];       //创建哈夫数组的全局变量
+//int hfcode[n+1];   //用来存放哈夫曼树编码
