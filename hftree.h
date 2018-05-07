@@ -7,6 +7,8 @@
 
 #endif //树和二叉树_HFTREE_H
 
+#include <iostream>
+using namespace std;
 /**
  * 双亲孩子表示法！！！
  * 需要给定叶子结点个数，即权值个数n
@@ -33,7 +35,7 @@ public:
     char value;
     int parent;
     int local;      //用来存储工作指示器
-    int code;
+    string code;
     int lchild;
     int rchild;
     int hfcode[n+1];   //用来存放哈夫曼树编码

@@ -30,11 +30,14 @@ int main(){
      * */
     int g=1;
    for(g=1;g<=n;g++){
+       stringstream ss;
        cout<<hf[g].value<<" "<<hf[g].weight<<" ";
         for (int h = hf[g].local-1; h >= 0; h--){
 
-            cout<< hf[g].hfcode[h];
+            ss<< hf[g].hfcode[h];
         }
+       hf[g].code = ss.str();
+        cout<<hf[g].code;
        cout<<endl;
 //        cout<<"hh";
     }
@@ -46,20 +49,30 @@ int main(){
      *
      * */
     cout<<"输入二进制编码，#则退出";
-    int code;
+    string code;
     cin>>code;
-    while(code!=2){
+    while(code!="#"){
+        int count =0;
         for(g=1;g<=n;g++){
-            stringstream ss;
-            for (int h = hf[g].local-1; h >= 0; h--){
-                ss<<hf[g].hfcode[h];
-//                cout<< hf[g].hfcode[h];
+            if(hf[g].code==code){
+                cout<<hf[g].value<<" "<<hf[g].weight<<endl;
             }
-            string str = ss.str();
-            int tmp = atof(str.c_str());
-            cout<<tmp;
-            cout<<endl;
-//        cout<<"hh";
+            else{
+                count++;
+            }
+//            stringstream ss;
+//            for (int h = hf[g].local-1; h >= 0; h--){
+//                ss<<hf[g].hfcode[h];
+////                cout<< hf[g].hfcode[h];
+//            }
+//            string str = ss.str();
+//            int tmp = atof(str.c_str());
+//            cout<<tmp;
+//            cout<<endl;
+////        cout<<"hh";
+        }
+        if(count ==n){
+            cout<<"没找到。。。"<<endl;
         }
         cin>>code;
     }
