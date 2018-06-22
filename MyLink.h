@@ -36,6 +36,8 @@ public:
     MyLink *rcreateLink(int n);
     MyLink *rcreateLink2(int n);
 
+    void swaplink(MyLink *L);
+
 };
 
 

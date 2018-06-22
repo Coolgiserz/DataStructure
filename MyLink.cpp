@@ -181,3 +181,16 @@ void MyLink::printLink(MyLink *L) {
     cout<<endl;
 
 }
+//单链表的就地逆置
+void MyLink::swaplink(MyLink *L) {
+    MyLink *p,*s;
+    p = L->next;
+    L->next = NULL;
+    while(p != NULL){
+        s = p->next;
+        p->next = L->next;
+        L->next = p;
+        p = s;
+    }
+
+}

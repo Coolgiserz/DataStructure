@@ -19,6 +19,7 @@ using namespace std;
 //     cout<<link->Find(link,5)->data;
 
      link->dele(link,4);
+     link->swaplink(link);
      link->printLink(link);
 
 //     link->setNull(link);
